@@ -1,0 +1,118 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #f5f7fa 0%, #EDEDED 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Container */
+.container {
+    background: white;
+    padding: 50px 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    width: 100%;
+    max-width: 480px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Texte */
+.container p {
+    color: #333;
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 15px;
+    line-height: 1.4;
+}
+
+.container p:first-child {
+    margin-top: 0;
+}
+
+/* Input-Felder */
+input[type="text"],
+input[type="date"] {
+    width: 100%;
+    padding: 16px 20px;
+    margin-bottom: 25px;
+    border: 2px solid #EDEDED;
+    border-radius: 12px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background-color: #Ededed;
+    color: #333;
+}
+
+input[type="text"]:focus,
+input[type="date"]:focus {
+    outline: none;
+    border-color: #E2C0FF;
+    background-color: white;
+    box-shadow: 0 0 0 3px rgba(200, 168, 255, 0.1);
+}
+
+input[type="text"]::placeholder {
+    color: black;
+}
+
+#Button {
+    background: linear-gradient(to right, #E2C0FF);
+    border: none;
+    padding: 16px 40px;
+    color: white;
+    font-size: 17px;
+    font-weight: 600;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 15px rgba(157, 122, 255, 0.2);
+    
+    width: 180px;
+    height: 55px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    white-space: nowrap;
+}
+
+#Button:hover {
+    background: linear-gradient(to right, #D0A0FF);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(157, 122, 255, 0.3);
+}
+
+
+/* Responsive */
+@media (max-width: 480px) {
+    .container {
+        padding: 35px 25px;
+        margin: 20px;
+    }
+    
+    .container p {
+        font-size: 16px;
+    }
+    
+    input[type="text"],
+    input[type="date"] {
+        padding: 14px 18px;
+        font-size: 15px;
+    }
+    
+    #Button {
+        padding: 14px 30px;
+        font-size: 16px;
+    }
+}
