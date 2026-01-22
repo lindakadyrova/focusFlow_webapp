@@ -116,3 +116,28 @@ input[type="text"]::placeholder {
         font-size: 16px;
     }
 }
+
+.add-note-btn {
+    display: block;
+    margin: 15px auto 25px auto; 
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    background: transparent;
+    color: #999;
+    cursor: pointer;
+    font-size: 32px;
+    font-weight: 300;
+    font-family: Arial, sans-serif;
+    padding: 0;
+    line-height: 38px;
+    text-align: center;
+    vertical-align: middle;
+    transition: all 0.2s ease;
+}
+
+.add-note-btn:hover {
+    border-color: #E2C0FF;
+    color: #E2C0FF;
+}
