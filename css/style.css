@@ -44,7 +44,7 @@ input[type="text"],
 input[type="date"] {
     width: 100%;
     padding: 16px 20px;
-    margin-bottom: 25px;
+    /* margin-bottom: 25px; */
     border: 2px solid #EDEDED;
     border-radius: 12px;
     font-size: 16px;
@@ -141,3 +141,43 @@ input[type="text"]::placeholder {
     border-color: #E2C0FF;
     color: #E2C0FF;
 }
+
+.task-input-container {
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+margin: 0 auto 25px auto;
+}
+
+.task-input-container input {
+    width: 100%;
+    padding-right: 45px;
+}
+
+.delete-btn {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #999;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease;
+    height: 24px; 
+    width: 24px;
+}
+
+.delete-btn svg {
+    width: 20px;
+    height: 20px;
+}
+
+.delete-btn:hover {
+    color: #ff4d4d;
+}
+
