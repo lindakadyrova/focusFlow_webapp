@@ -3,17 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../css/style.css" />
+    <script src="js/script.js" defer></script>
     <title>FocusFlow</title>
   </head>
   <body>
     <div class="container">
       <p>What is the one big task you want to tackle?</p>
-      <input type="text" placeholder="write big task" />
+      <input id="big-task-input" type="text" placeholder="write big task" />
       <p>When do you want to be done with it?</p>
       <input type="date" />
       <br />
-      <a href="thirdActivity.html"> <button class="Button">Next step</button> </a>
+      <a href="thirdActivity.html">
+        <button id="btn-to-step3" class="Button">Next step</button>
+      </a>
     </div>
   </body>
 </html>

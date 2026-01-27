@@ -4,15 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../css/style.css" />
+    <script src="js/script.js" defer></script>
     <title>Document</title>
   </head>
   <body>
     <div class="container">
       <p>We will support you along the way!</p>
       <p>But first, let's break it down into smaller tasks</p>
-
       <div class="task-input-container">
-        <input type="text" placeholder="write small task" />
+        <input id="small-task-input" type="text" placeholder="write small task" />
         <button class="delete-btn">
           <svg
             viewBox="0 0 24 24"
@@ -29,11 +29,11 @@
           </svg>
         </button>
       </div>
-
-      <button class="add-note-btn">+</button>
-
+      <button id="btn-add-small" class="add-note-btn">+</button>
       <br />
-      <a href="fourthActivity.html"> <button class="Button">Next Step</button> </a>
+      <a href="fourthActivity.html">
+        <button id="btn-to-step4" class="Button">Next Step</button>
+      </a>
     </div>
   </body>
 </html>

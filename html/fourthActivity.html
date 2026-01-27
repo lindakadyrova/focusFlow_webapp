@@ -2,8 +2,12 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="wclassth=device-wclassth, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="wclassth=device-wclassth, initial-scale=1.0"
+    />
     <link rel="stylesheet" href="../css/style.css" />
+    <script src="js/script.js" defer></script>
     <title>Document</title>
   </head>
   <body>
@@ -16,7 +20,7 @@
         how long do you think this <br />
         task will take you?
       </p>
-      <select>
+      <select id="time-select">
         <option value="">Bitte wählen...</option>
         <option value="option1">< 30 minuten</option>
         <option value="option2">30 minuten</option>
@@ -25,8 +29,12 @@
         <option value="option5">> 90 minuten</option>
       </select>
       <br />
-      <a href="sixthActivity.html"> <button class="Button">Start now</button> </a>
-      <a href="fifthActivity.html"><button class="Button">Add to Tasks</button> </a>
+      <a href="sixthActivity.html">
+        <button id="start" class="Button">Start now</button>
+      </a>
+      <a href="fifthActivity.html"
+        ><button id="btn-store" class="Button">Add to Tasks</button>
+      </a>
     </div>
   </body>
 </html>
