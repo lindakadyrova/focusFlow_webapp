@@ -36,7 +36,7 @@
         <p>But first, let's break it down into smaller tasks</p>
         <div id="small-tasks-list">
           <div class="task-input-container">
-            <input id="small-task-input" type="text" placeholder="write small task" />
+            <input class="small-task-input" type="text" placeholder="write small task" />
             <button class="delete-btn" onclick="removeTaskField(this)">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2M10 11v6M14 11v6" stroke-linecap="round" stroke-linejoin="round" />
@@ -72,9 +72,8 @@
     <div id="view-step5" class="view">
       <div class="container">
         <p>To-Do</p>
-        <h1 id="display-big-task">big task</h1>
-        <h2 id="display-small-tasks">small tasks</h2>
-        <button>></button>
+        <hr />
+        <div id="tasks-container"></div>
         <br />
         <button id="btn-add" onclick="navigateTo('view-step2')">+</button>
       </div>

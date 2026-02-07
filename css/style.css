@@ -182,9 +182,82 @@ margin: 0 auto 25px auto;
 }
 
 .view {
-        display: none;
-      }
+    display: none;
+    width: 100%;
+}
     
-      .view.active {
-        display: block;
-      }
+.view.active {
+    display: block;
+    width: 100%;
+}
+
+#view-step5 .container {
+    text-align: left;
+    justify-content: flex-start;
+    padding-top: 60px;
+}
+
+#tasks-container {
+    width: 100%;
+    margin-top: 10px;
+    flex-grow: 1;
+}
+
+hr {
+    border: none;
+    border-top: 2px solid #666;
+    margin-bottom: 10px;
+}
+
+.task-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid #ccc;
+}
+
+.label-big-task {
+    font-size: 14px;
+    color: #a0a0a0;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.main-small-task {
+    font-size: 20px;
+    margin: 0;
+    font-weight: 600;
+    color: #555;
+}
+
+.play-btn {
+    background: #f1e9ff;
+    border: none;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #8a63d2;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.play-btn:hover {
+    transform: scale(1.05);
+}
+
+#btn-add {
+    background: none;
+    border: 2px solid #ccc;
+    color: #ccc;
+    font-size: 30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-top: 20px;
+    cursor: pointer;
+}

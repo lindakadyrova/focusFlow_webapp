@@ -18,25 +18,56 @@ function saveTaskData() {
                             .filter(val => val.trim() !== "");
 
     const taskFlowData = {
+        id: Date.now(),
         bigTask: bigTask,
         smallTasks: smallTasks,
         deadline: document.querySelector('input[type="date"]').value,
         duration: document.getElementById('time-select').value
     };
 
-    localStorage.setItem('focusFlowTask', JSON.stringify(taskFlowData));
+    let allTasks = JSON.parse(localStorage.getItem('focusFlowTasks')) || [];
+    allTasks.push(taskFlowData);
+    localStorage.setItem('focusFlowTasks', JSON.stringify(allTasks));
+
+    document.getElementById('big-task-input').value = "";
+    document.getElementById('small-tasks-list').innerHTML = `
+        <div class="task-input-container">
+            <input class="small-task-input" type="text" placeholder="write small task" />
+        </div>`;
+
+    navigateTo('view-step5');
 }
 
 function loadTasks() {
-    const savedData = localStorage.getItem('focusFlowTask');
-    if (savedData) {
-        const data = JSON.parse(savedData);
+    const container = document.getElementById('tasks-container');
+    if (!container) return;
+
+    const allTasks = JSON.parse(localStorage.getItem('focusFlowTasks')) || [];
+    container.innerHTML = "";
+
+    allTasks.forEach(task => {
+        const firstSmallTask = task.smallTasks.length > 0 ? task.smallTasks[0] : "No sub-tasks";
         
-        if(document.getElementById('display-big-task')) {
-            document.getElementById('display-big-task').innerText = data.bigTask || "No Task Set";
-            
-            document.getElementById('display-small-tasks').innerText = data.smallTasks.join(', ');
-        }
+        const taskCard = document.createElement('div');
+        taskCard.className = 'task-card';
+        taskCard.innerHTML = `
+            <div class="task-info">
+                <span class="label-big-task">${task.bigTask}</span>
+                <h2 class="main-small-task">${firstSmallTask}</h2>
+            </div>
+            <button class="play-btn" onclick="startSpecificTask(${task.id})">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="30" height="30">
+                    <path d="M8 5v14l11-7z"/>
+                </svg>
+            </button>
+        `;
+        container.appendChild(taskCard);
+    });
+
+    const activeData = JSON.parse(localStorage.getItem('currentActiveTask'));
+    if (activeData && document.getElementById('display-big-task')) {
+        document.getElementById('display-big-task').innerText = activeData.bigTask;
+        document.getElementById('display-small-tasks').innerText = activeData.smallTasks[0] || "";
     }
 }
 
@@ -72,4 +103,11 @@ function removeTaskField(button) {
     } else {
         button.previousElementSibling.value = '';
     }
+}
+
+function startSpecificTask(taskId) {
+    const allTasks = JSON.parse(localStorage.getItem('focusFlowTasks')) || [];
+    const selected = allTasks.find(t => t.id === taskId);
+    localStorage.setItem('currentActiveTask', JSON.stringify(selected));
+    navigateTo('view-step6');
 }
