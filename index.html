@@ -3,22 +3,103 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../css/style.css" />
-    <script src="../js/script.js" defer></script>
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/script.js" defer></script>
     <script></script>
-    <title>Document</title>
+    <title>FocusFlow</title>
   </head>
   <body>
-    <div class="container">
-      <h1>Welcome to</h1>
-      <img src="resources/icon.svg" alt="FocusFlow Logo" height="200px" />
-      <h1>FOCUSFLOW</h1>
-      <a href="html/secondActivity.html">
-        <button class="Button">Add Task</button>
-      </a>
-      <a href="html/fifthActivity.html">
-        <button class="Button">Go To Tasks</button>
-      </a>
+    <div id="view-landing" class="view active">
+      <div class="container">
+        <h1>Welcome to</h1>
+        <img src="resources/icon.svg" alt="FocusFlow Logo" height="200px" />
+        <h1>FOCUSFLOW</h1>
+        <button class="Button" onclick="navigateTo('view-step2')">Add Task</button>
+        <button class="Button" onclick="navigateTo('view-step5')">Go To Tasks</button>
+      </div>
+    </div>
+        
+    <div id="view-step2" class="view">
+      <div class="container">
+        <p>What is the one big task you want to tackle?</p>
+        <input id="big-task-input" type="text" placeholder="write big task" />
+        <p>When do you want to be done with it?</p>
+        <input type="date" />
+        <br />
+        <button id="btn-to-step3" class="Button" onclick="navigateTo('view-step3')">Next step</button>
+      </div>
+    </div>
+        
+    <div id="view-step3" class="view">
+      <div class="container">
+        <p>We will support you along the way!</p>
+        <p>But first, let's break it down into smaller tasks</p>
+        <div class="task-input-container">
+          <input id="small-task-input" type="text" placeholder="write small task" />
+          <button class="delete-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2M10 11v6M14 11v6" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+        </div>
+        <button id="btn-add-small" class="add-note-btn">+</button>
+        <br />
+        <button id="btn-to-step4" class="Button" onclick="navigateTo('view-step4')">Next Step</button>
+      </div>
+    </div>
+
+    <div id="view-step4" class="view">
+      <div class="container">
+        <p>Awesome!</p>
+        <p>Okay, last step...</p>
+        <p>To help you with time <br /> manamgement in future, <br /> how long do you think this <br /> task will take you?</p>
+        <select id="time-select">
+          <option value="">Please select...</option>
+          <option value="option1">< 30 minutes</option>
+          <option value="option2">30 minutes</option>
+          <option value="option3">60 minutes</option>
+          <option value="option4">90 minutes</option>
+          <option value="option5">> 90 minutes</option>
+        </select>
+        <br />
+        <button id="start" class="Button" onclick="navigateTo('view-step6')">Start now</button>
+        <button id="btn-store" class="Button" onclick="navigateTo('view-step5')">Add to Tasks</button>
+      </div>
+    </div>
+
+    <div id="view-step5" class="view">
+      <div class="container">
+        <p>To-Do</p>
+        <h1>big task</h1>
+        <h2>small tasks</h2>
+        <button>></button>
+        <br />
+        <button id="btn-add" onclick="navigateTo('view-step2')">+</button>
+      </div>
+    </div>
+
+    <div id="view-step6" class="view">
+      <div class="container">
+        <img src="resources/icon.svg" alt="FocusFlow Logo" />
+        <h1>big task</h1>
+        <h2>small task</h2>
+        <button class="Button">Next Step</button>
+        <button class="Button" onclick="navigateTo('view-step5')">Stop session</button>
+      </div>
+    </div>
+
+    <div id="view-step7" class="view">
+      <div class="container">
+        <h1>DONE!</h1>
+        <p>
+          How long you thought <br />
+          this task was going to take:
+        </p>
+        <h3>30 minutes</h3>
+        <p>And here is how long <br />it actually took:</p>
+        <h3>45 minutes</h3>
+        <button class="Button" onclick="navigateTo('view-step5')">Back to tasks</button>
+      </div>
     </div>
   </body>
 </html>

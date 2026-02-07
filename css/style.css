@@ -181,3 +181,10 @@ margin: 0 auto 25px auto;
     color: #ff4d4d;
 }
 
+.view {
+        display: none;
+      }
+    
+      .view.active {
+        display: block;
+      }
