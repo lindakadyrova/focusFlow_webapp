@@ -34,15 +34,17 @@
       <div class="container">
         <p>We will support you along the way!</p>
         <p>But first, let's break it down into smaller tasks</p>
-        <div class="task-input-container">
-          <input id="small-task-input" type="text" placeholder="write small task" />
-          <button class="delete-btn">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2M10 11v6M14 11v6" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-          </button>
+        <div id="small-tasks-list">
+          <div class="task-input-container">
+            <input id="small-task-input" type="text" placeholder="write small task" />
+            <button class="delete-btn" onclick="removeTaskField(this)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2M10 11v6M14 11v6" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </button>
+          </div>
         </div>
-        <button id="btn-add-small" class="add-note-btn">+</button>
+        <button id="btn-add-small" class="add-note-btn" onclick="addTaskField()">+</button>
         <br />
         <button id="btn-to-step4" class="Button" onclick="navigateTo('view-step4')">Next Step</button>
       </div>
@@ -70,8 +72,8 @@
     <div id="view-step5" class="view">
       <div class="container">
         <p>To-Do</p>
-        <h1>big task</h1>
-        <h2>small tasks</h2>
+        <h1 id="display-big-task">big task</h1>
+        <h2 id="display-small-tasks">small tasks</h2>
         <button>></button>
         <br />
         <button id="btn-add" onclick="navigateTo('view-step2')">+</button>
@@ -81,8 +83,8 @@
     <div id="view-step6" class="view">
       <div class="container">
         <img src="resources/icon.svg" alt="FocusFlow Logo" />
-        <h1>big task</h1>
-        <h2>small task</h2>
+        <h1 id="display-big-task">big task</h1>
+        <h2 id="display-small-tasks">small task</h2>
         <button class="Button">Next Step</button>
         <button class="Button" onclick="navigateTo('view-step5')">Stop session</button>
       </div>
@@ -91,10 +93,8 @@
     <div id="view-step7" class="view">
       <div class="container">
         <h1>DONE!</h1>
-        <p>
-          How long you thought <br />
-          this task was going to take:
-        </p>
+        <p>How long you thought <br />
+          this task was going to take:</p>
         <h3>30 minutes</h3>
         <p>And here is how long <br />it actually took:</p>
         <h3>45 minutes</h3>
