@@ -8,9 +8,6 @@
 body {
     background: linear-gradient(135deg, #f5f7fa 0%, #EDEDED 100%);
     min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     padding: 20px;
 }
 
@@ -183,12 +180,16 @@ margin: 0 auto 25px auto;
 
 .view {
     display: none;
+    justify-content: center;
+    align-items: center;
     width: 100%;
+    min-height: 100vh;
 }
     
 .view.active {
-    display: block;
-    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #view-step5 .container {
@@ -260,6 +261,8 @@ hr {
     border-radius: 50%;
     margin-top: 20px;
     cursor: pointer;
+    display: block;
+    margin: 20px auto 0 auto;
 }
 
 input.error, select.error {
