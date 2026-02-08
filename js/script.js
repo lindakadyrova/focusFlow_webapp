@@ -122,6 +122,13 @@ function addTaskField() {
         </button>
     `;
     list.appendChild(newField);
+
+    list.scrollTo({
+        top: list.scrollHeight,
+        behavior: 'smooth'
+    });
+
+    newField.querySelector('input').focus();
 }
 
 function removeTaskField(button) {

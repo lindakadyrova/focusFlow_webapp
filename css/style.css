@@ -246,6 +246,19 @@ input.error, select.error {
     background-color: #fff5f5 !important;
 }
 
+#small-tasks-list {
+    max-height: 300px;
+    overflow-y: auto;
+    padding-right: 10px;
+    margin-bottom: 20px;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+#small-tasks-list::-webkit-scrollbar {
+    display: none;
+}
+
 @media (max-width: 500px) {
 
     body {
