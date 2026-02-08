@@ -162,6 +162,16 @@ function startSpecificTask(taskId) {
         document.getElementById('display-big-task').innerText = selected.bigTask;
         document.getElementById('display-small-tasks').innerText = selected.smallTasks[0] || "No more sub-tasks";
 
+        const sessionBtn = document.querySelector('#view-step6 .Button[onclick="completeSmallTask()"]');
+
+        if (sessionBtn) {
+            if (selected.smallTasks.length <= 1) {
+                sessionBtn.innerText = "Finish Session";
+            } else {
+                sessionBtn.innerText = "Next Step";
+            }
+        }
+
         sessionStartTime = Date.now();
         
         navigateTo('view-step6');
@@ -170,6 +180,7 @@ function startSpecificTask(taskId) {
 
 function completeSmallTask() {
     let activeTask = JSON.parse(localStorage.getItem('currentActiveTask'));
+    const sessionBtn = document.querySelector('#view-step6 .Button[onclick="completeSmallTask()"]');
     
     if (!activeTask || !activeTask.smallTasks) {
         navigateTo('view-step7');
@@ -187,6 +198,14 @@ function completeSmallTask() {
         
         document.getElementById('display-big-task').innerText = activeTask.bigTask;
         document.getElementById('display-small-tasks').innerText = activeTask.smallTasks[0];
+
+        if (sessionBtn) {
+            if (activeTask.smallTasks.length === 1) {
+                sessionBtn.innerText = "Finish Session";
+            } else {
+                sessionBtn.innerText = "Next Step";
+            }
+        }
         
         updateMasterTaskList(activeTask);
     } else {
@@ -196,6 +215,8 @@ function completeSmallTask() {
             estimate: activeTask.duration
         };
         localStorage.setItem('temp_last_summary', JSON.stringify(sessionSummary));
+
+        if (sessionBtn) sessionBtn.innerText = "Next Step";
 
         finishMasterTask(activeTask.id);
         localStorage.removeItem('currentActiveTask');
