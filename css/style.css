@@ -177,7 +177,6 @@ margin: 0 auto 25px auto;
 #tasks-container {
     width: 100%;
     margin-top: 10px;
-    flex-grow: 1;
 }
 
 hr {
@@ -266,14 +265,14 @@ input.error, select.error {
     width: 100%;
     padding: 15px 20px;
     z-index: 1000;
-    pointer-events: none; /* Allows clicking things 'under' the header if needed */
+    pointer-events: none;
 }
 
 .header-logo {
     width: 60px;
     height: 60px;
     cursor: pointer;
-    pointer-events: auto; /* Re-enables clicking the icon to go home */
+    pointer-events: auto;
     transition: transform 0.2s ease;
 }
 
@@ -281,7 +280,6 @@ input.error, select.error {
     transform: scale(1.1);
 }
 
-/* Hide the header on the landing page */
 #global-header.hidden {
     display: none;
 }
@@ -377,7 +375,14 @@ input.error, select.error {
         display: flex;
         justify-content: center;
         align-items: center;
-        margin-top: -15px
+    }
+
+    #btn-add {
+        margin-top: -5px;
+    }
+
+    .add-note-btn {
+        margin-top: -50px;
     }
 
     .task-card {
