@@ -226,20 +226,6 @@ hr {
     transform: scale(1.05);
 }
 
-#btn-add {
-    background: none;
-    border: 2px solid #ccc;
-    color: #ccc;
-    font-size: 30px;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin-top: 20px;
-    cursor: pointer;
-    display: block;
-    margin: 20px auto 0 auto;
-}
-
 input.error, select.error {
     border: 2px solid #ff4d4d !important;
     background-color: #fff5f5 !important;
@@ -389,21 +375,8 @@ input.error, select.error {
         margin-bottom: 12px;
     }
 
-    #btn-add, .add-note-btn {
-        width: 55px;
-        height: 55px;
-        font-size: 34px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    #btn-add {
-        margin-top: -5px;
-    }
-
     .add-note-btn {
-        margin-top: -50px;
+        margin-top: 20px;
     }
 
     .task-card {
