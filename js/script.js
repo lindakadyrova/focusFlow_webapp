@@ -7,6 +7,21 @@ function navigateTo(viewId) {
     if (viewId === 'view-step5' || viewId === 'view-step6') {
         loadTasks();
     }
+
+    if (viewId === 'view-step7') {
+        const summary = JSON.parse(localStorage.getItem('temp_last_summary'));
+        
+        if (summary) {
+            const estimateMap = {
+                "option1": "< 30", "option2": "30", "option3": "60", "option4": "90", "option5": "90+"
+            };
+
+            document.getElementById('actual-time-display').innerText = `${summary.actual} minutes`;
+            document.getElementById('estimated-time-display').innerText = `${estimateMap[summary.estimate]} minutes`;
+            
+            localStorage.removeItem('temp_last_summary');
+        }
+    }
 }
 
 function saveTaskData() {
@@ -22,7 +37,8 @@ function saveTaskData() {
         bigTask: bigTask,
         smallTasks: smallTasks,
         deadline: document.querySelector('input[type="date"]').value,
-        duration: document.getElementById('time-select').value
+        duration: document.getElementById('time-select').value,
+        totalTime: 0
     };
 
     let allTasks = JSON.parse(localStorage.getItem('focusFlowTasks')) || [];
@@ -111,15 +127,20 @@ function removeTaskField(button) {
     }
 }
 
+let sessionStartTime;
+
 function startSpecificTask(taskId) {
     const allTasks = JSON.parse(localStorage.getItem('focusFlowTasks')) || [];
     const selected = allTasks.find(t => t.id === taskId);
     
     if (selected) {
         localStorage.setItem('currentActiveTask', JSON.stringify(selected));
+        if (selected.totalTime === undefined) selected.totalTime = 0;
         
         document.getElementById('display-big-task').innerText = selected.bigTask;
         document.getElementById('display-small-tasks').innerText = selected.smallTasks[0] || "No more sub-tasks";
+
+        sessionStartTime = Date.now();
         
         navigateTo('view-step6');
     }
@@ -135,6 +156,10 @@ function completeSmallTask() {
 
     activeTask.smallTasks.shift();
 
+    const timeSpentThisSession = Date.now() - sessionStartTime;
+    activeTask.totalTime = (activeTask.totalTime || 0) + timeSpentThisSession;
+    sessionStartTime = Date.now();
+
     if (activeTask.smallTasks.length > 0) {
         localStorage.setItem('currentActiveTask', JSON.stringify(activeTask));
         
@@ -143,6 +168,13 @@ function completeSmallTask() {
         
         updateMasterTaskList(activeTask);
     } else {
+        const totalMinutes = Math.round(activeTask.totalTime / 60000);
+        const sessionSummary = {
+            actual: totalMinutes,
+            estimate: activeTask.duration
+        };
+        localStorage.setItem('temp_last_summary', JSON.stringify(sessionSummary));
+
         finishMasterTask(activeTask.id);
         localStorage.removeItem('currentActiveTask');
         navigateTo('view-step7');
@@ -169,6 +201,10 @@ function stopSessionEarly() {
     const activeTask = JSON.parse(localStorage.getItem('currentActiveTask'));
     
     if (activeTask) {
+        const timeSpentThisSession = Date.now() - sessionStartTime;
+        activeTask.totalTime = (activeTask.totalTime || 0) + timeSpentThisSession;
+        localStorage.setItem('currentActiveTask', JSON.stringify(activeTask));
+
         updateMasterTaskList(activeTask);
     }
     
