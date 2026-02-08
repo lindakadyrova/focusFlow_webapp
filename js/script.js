@@ -45,6 +45,12 @@ function loadTasks() {
     const allTasks = JSON.parse(localStorage.getItem('focusFlowTasks')) || [];
     container.innerHTML = "";
 
+    allTasks.sort((a, b) => {
+        if (!a.deadline) return 1;
+        if (!b.deadline) return -1;
+        return new Date(a.deadline) - new Date(b.deadline);
+    });
+
     allTasks.forEach(task => {
         const firstSmallTask = task.smallTasks.length > 0 ? task.smallTasks[0] : "No sub-tasks";
         
