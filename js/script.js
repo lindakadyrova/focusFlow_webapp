@@ -75,6 +75,15 @@ function loadTasks() {
     const allTasks = JSON.parse(localStorage.getItem('focusFlowTasks')) || [];
     container.innerHTML = "";
 
+    if (allTasks.length === 0) {
+        container.innerHTML = `
+            <div class="empty-state">
+                <p>No tasks added yet!</p>
+            </div>
+        `;
+        return; 
+    }
+
     allTasks.sort((a, b) => {
         if (!a.deadline) return 1;
         if (!b.deadline) return -1;
