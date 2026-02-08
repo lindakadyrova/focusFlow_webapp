@@ -94,6 +94,12 @@ function loadTasks() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    const dateInput = document.getElementById('deadline-input');
+    if (dateInput) {
+        const today = new Date().toISOString().split('T')[0];
+        dateInput.setAttribute('min', today);
+    }
+
     const startBtn = document.getElementById('start');
     const storeBtn = document.getElementById('btn-store');
 
@@ -211,3 +217,65 @@ function stopSessionEarly() {
     localStorage.removeItem('currentActiveTask');
     navigateTo('view-step5');
 }
+
+function isViewValid(viewId) {
+    let isValid = true;
+
+    if (viewId === 'view-step2') {
+        const bigTaskInput = document.getElementById('big-task-input');
+        const dateInput = document.querySelector('input[type="date"]');
+        
+        const isNameValid = validateInput(bigTaskInput);
+
+        const selectedDate = new Date(dateInput.value);
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        let isDateValid = true;
+        if (!dateInput.value || selectedDate < today) {
+            dateInput.classList.add('error');
+            isDateValid = false;
+        } else {
+            dateInput.classList.remove('error');
+        }
+        
+        isValid = isNameValid && isDateValid;
+    }
+
+    if (viewId === 'view-step3') {
+        const smallTaskInputs = document.querySelectorAll('.small-task-input');
+        const hasContent = Array.from(smallTaskInputs).some(input => input.value.trim() !== "");
+        
+        if (!hasContent) {
+            smallTaskInputs[0].classList.add('error');
+            isValid = false;
+        } else {
+            smallTaskInputs.forEach(input => input.classList.remove('error'));
+        }
+    }
+
+    if (viewId === 'view-step4') {
+        const timeSelect = document.getElementById('time-select');
+        isValid = validateInput(timeSelect);
+    }
+
+    return isValid;
+}
+
+function validateInput(inputElement) {
+    if (!inputElement.value.trim()) {
+        inputElement.classList.add('error');
+        return false;
+    } else {
+        inputElement.classList.remove('error');
+        return true;
+    }
+}
+
+document.addEventListener('input', (e) => {
+    if (e.target.classList.contains('error')) {
+        if (e.target.value.trim() !== "") {
+            e.target.classList.remove('error');
+        }
+    }
+});

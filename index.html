@@ -24,9 +24,9 @@
         <p>What is the one big task you want to tackle?</p>
         <input id="big-task-input" type="text" placeholder="write big task" />
         <p>When do you want to be done with it?</p>
-        <input type="date" />
+        <input id="deadline-input" type="date"/>
         <br />
-        <button id="btn-to-step3" class="Button" onclick="navigateTo('view-step3')">Next step</button>
+        <button id="btn-to-step3" class="Button" onclick="if(isViewValid('view-step2')) navigateTo('view-step3')">Next step</button>
       </div>
     </div>
         
@@ -46,7 +46,7 @@
         </div>
         <button id="btn-add-small" class="add-note-btn" onclick="addTaskField()">+</button>
         <br />
-        <button id="btn-to-step4" class="Button" onclick="navigateTo('view-step4')">Next Step</button>
+        <button id="btn-to-step4" class="Button" onclick="if(isViewValid('view-step3')) navigateTo('view-step4')">Next Step</button>
       </div>
     </div>
 
@@ -65,7 +65,7 @@
         </select>
         <br />
         <button id="start" class="Button" onclick="navigateTo('view-step6')">Start now</button>
-        <button id="btn-store" class="Button" onclick="navigateTo('view-step5')">Add to Tasks</button>
+        <button id="btn-store" class="Button" onclick="if (isViewValid('view-step4')) navigateTo('view-step5')">Add to Tasks</button>
       </div>
     </div>
 
