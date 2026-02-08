@@ -33,7 +33,7 @@ function navigateTo(viewId) {
     }
 }
 
-function saveTaskData() {
+function saveTaskData(targetView) {
     const bigTask = document.getElementById('big-task-input').value;
     
     const smallTaskInputs = document.querySelectorAll('.small-task-input');
@@ -54,13 +54,18 @@ function saveTaskData() {
     allTasks.push(taskFlowData);
     localStorage.setItem('focusFlowTasks', JSON.stringify(allTasks));
 
+    if (targetView === 'view-step6') {
+        localStorage.setItem('currentActiveTask', JSON.stringify(taskFlowData));
+        sessionStartTime = Date.now(); 
+    }
+
     document.getElementById('big-task-input').value = "";
     document.getElementById('small-tasks-list').innerHTML = `
         <div class="task-input-container">
             <input class="small-task-input" type="text" placeholder="write small task" />
         </div>`;
 
-    navigateTo('view-step5');
+    navigateTo(targetView);
 }
 
 function loadTasks() {
@@ -108,12 +113,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const today = new Date().toISOString().split('T')[0];
         dateInput.setAttribute('min', today);
     }
-
-    const startBtn = document.getElementById('start');
-    const storeBtn = document.getElementById('btn-store');
-
-    if (startBtn) startBtn.addEventListener('click', saveTaskData);
-    if (storeBtn) storeBtn.addEventListener('click', saveTaskData);
     
     loadTasks();
 });

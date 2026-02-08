@@ -80,8 +80,8 @@
           <option value="option5">> 90 minutes</option>
         </select>
         <br />
-        <button id="start" class="Button" onclick="navigateTo('view-step6')">Start now</button>
-        <button id="btn-store" class="Button" onclick="if (isViewValid('view-step4')) navigateTo('view-step5')">Add to Tasks</button>
+        <button id="start" class="Button" onclick="if(isViewValid('view-step4')) saveTaskData('view-step6')">Start now</button>
+        <button id="btn-store" class="Button" onclick="if (isViewValid('view-step4')) saveTaskData('view-step5')">Add to Tasks</button>
       </div>
     </div>
 
