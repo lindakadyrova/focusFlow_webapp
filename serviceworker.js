@@ -19,7 +19,13 @@ const filesToCache = [
   './install.js',
   './manifest.json',
   './js/script.js',
-  './resources/icon.svg'
+  './resources/icon.svg',
+  './resources/icon-192.svg',
+  './resources/icon-512.svg',
+  './resources/icon-192.jpg',
+  './resources/icon-512.jpg',
+  './resources/icon-192.png',
+  './resources/icon-512.png'
 ];
 
 // Install the service worker asynchronously, which then actually caches all the files contained in the above list
