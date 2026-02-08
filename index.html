@@ -2,17 +2,20 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+    />
     <link rel="stylesheet" href="css/style.css" />
-    <link rel="manifest" href="manifest.json">
-    <link rel="icon" href="resources/icon.svg">
+    <link rel="manifest" href="manifest.json" />
+    <link rel="icon" href="resources/icon.svg" />
     <meta name="application-name" content="FocusFlow" />
     <meta name="apple-mobile-web-app-title" content="FocusFlow" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="msapplication-starturl" content="/index.html" />
-    <meta name="theme-color" content="white"/>
-    <link rel="apple-touch-icon" href="resources/icon.svg">
+    <meta name="theme-color" content="white" />
+    <link rel="apple-touch-icon" href="resources/icon.svg" />
     <script src="js/script.js" defer></script>
     <script src="use_webworker.js"></script>
     <script src="use_serviceworker.js"></script>
@@ -22,47 +25,102 @@
   </head>
   <body>
     <header id="global-header" class="hidden">
-      <img src="resources/icon.svg" alt="FocusFlow Logo" class="header-logo" onclick="navigateTo('view-landing')" />
+      <img
+        src="resources/icon.svg"
+        alt="FocusFlow Logo"
+        class="header-logo"
+        onclick="navigateTo('view-landing')"
+      />
     </header>
     <div id="view-landing" class="view active">
       <div class="container">
         <h1>Welcome to</h1>
         <img src="resources/icon.svg" alt="FocusFlow Logo" class="main-logo" />
         <h1>FOCUSFLOW</h1>
-        <button class="Button" onclick="navigateTo('view-step2')">Add Task</button>
-        <button class="Button" onclick="navigateTo('view-step5')">Go To Tasks</button>
+        <button class="Button" onclick="navigateTo('view-step2')">
+          Add Task
+        </button>
+        <button class="Button" onclick="navigateTo('view-step5')">
+          Go To Tasks
+        </button>
         <button id="installBtn" class="Button">Install App</button>
       </div>
     </div>
-        
+
     <div id="view-step2" class="view">
       <div class="container">
         <p>What is the one big task you want to tackle?</p>
         <input id="big-task-input" type="text" placeholder="write big task" />
         <p>When do you want to be done with it?</p>
-        <input id="deadline-input" type="date"/>
+        <input id="deadline-input" type="date" />
         <br />
-        <button id="btn-to-step3" class="Button" onclick="if(isViewValid('view-step2')) navigateTo('view-step3')">Next step</button>
+        <button
+          id="btn-to-step3"
+          class="Button"
+          onclick="if (isViewValid('view-step2')) navigateTo('view-step3');"
+        >
+          Next step
+        </button>
       </div>
     </div>
-        
+
     <div id="view-step3" class="view">
       <div class="container">
-        <p>We will support you along the way!</p>
+        <p>
+          We will support you along the way!
+          <span class="help-icon" onclick="openHelp()">?</span>
+        </p>
+
         <p>But first, let's break it down into smaller tasks</p>
         <div id="small-tasks-list">
           <div class="task-input-container">
-            <input class="small-task-input" type="text" placeholder="write small task" />
+            <input
+              class="small-task-input"
+              type="text"
+              placeholder="write small task"
+            />
             <button class="delete-btn" onclick="removeTaskField(this)">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2M10 11v6M14 11v6" stroke-linecap="round" stroke-linejoin="round" />
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2M10 11v6M14 11v6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
               </svg>
             </button>
           </div>
+          <div id="help-modal" class="help-modal hidden">
+            <div class="help-box">
+              <p>
+                In order to not feel overwhelmed by bigger tasks, we want you to
+                break it into the smallest task possible. Like, open text
+                document or search for one source. How many subtasks you want to
+                create is your choice, but the more the better.
+              </p>
+              <button onclick="closeHelp()">OK</button>
+            </div>
+          </div>
         </div>
-        <button id="btn-add-small" class="add-note-btn" onclick="addTaskField()">+</button>
+        <button
+          id="btn-add-small"
+          class="add-note-btn"
+          onclick="addTaskField()"
+        >
+          +
+        </button>
         <br />
-        <button id="btn-to-step4" class="Button" onclick="if(isViewValid('view-step3')) navigateTo('view-step4')">Next Step</button>
+        <button
+          id="btn-to-step4"
+          class="Button"
+          onclick="if (isViewValid('view-step3')) navigateTo('view-step4');"
+        >
+          Next Step
+        </button>
       </div>
     </div>
 
@@ -70,7 +128,12 @@
       <div class="container">
         <p>Awesome!</p>
         <p>Okay, last step...</p>
-        <p>To help you with time <br /> manamgement in future, <br /> how long do you think this <br /> task will take you?</p>
+        <p>
+          To help you with time <br />
+          manamgement in future, <br />
+          how long do you think this <br />
+          task will take you?
+        </p>
         <select id="time-select">
           <option value="">Please select...</option>
           <option value="option1">< 30 minutes</option>
@@ -80,8 +143,16 @@
           <option value="option5">> 90 minutes</option>
         </select>
         <br />
-        <button id="start" class="Button" onclick="navigateTo('view-step6')">Start now</button>
-        <button id="btn-store" class="Button" onclick="if (isViewValid('view-step4')) navigateTo('view-step5')">Add to Tasks</button>
+        <button id="start" class="Button" onclick="navigateTo('view-step6')">
+          Start now
+        </button>
+        <button
+          id="btn-store"
+          class="Button"
+          onclick="if (isViewValid('view-step4')) navigateTo('view-step5');"
+        >
+          Add to Tasks
+        </button>
       </div>
     </div>
 
@@ -101,19 +172,25 @@
         <h1 id="display-big-task">big task</h1>
         <h2 id="display-small-tasks">small task</h2>
         <button class="Button" onclick="completeSmallTask()">Next Step</button>
-        <button class="Button" onclick="stopSessionEarly()">Stop session</button>
+        <button class="Button" onclick="stopSessionEarly()">
+          Stop session
+        </button>
       </div>
     </div>
 
     <div id="view-step7" class="view">
       <div class="container">
         <h1>DONE!</h1>
-        <p>How long you thought <br />
-          this task was going to take:</p>
+        <p>
+          How long you thought <br />
+          this task was going to take:
+        </p>
         <h3 id="estimated-time-display">0 minutes</h3>
         <p>And here is how long <br />it actually took:</p>
         <h3 id="actual-time-display">0 minutes</h3>
-        <button class="Button" onclick="navigateTo('view-step5')">Back to tasks</button>
+        <button class="Button" onclick="navigateTo('view-step5')">
+          Back to tasks
+        </button>
       </div>
     </div>
   </body>

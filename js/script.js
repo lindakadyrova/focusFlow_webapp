@@ -295,3 +295,11 @@ document.addEventListener('input', (e) => {
         }
     }
 });
+
+function openHelp() {
+  document.getElementById('help-modal').classList.remove('hidden');
+}
+
+function closeHelp() {
+  document.getElementById('help-modal').classList.add('hidden');
+}
