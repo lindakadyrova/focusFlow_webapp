@@ -90,30 +90,6 @@ input[type="text"]::placeholder {
     box-shadow: 0 6px 20px rgba(157, 122, 255, 0.3);
 }
 
-
-/* Responsive */
-@media (max-width: 480px) {
-    .container {
-        padding: 35px 25px;
-        margin: 20px;
-    }
-    
-    .container p {
-        font-size: 16px;
-    }
-    
-    input[type="text"],
-    input[type="date"] {
-        padding: 14px 18px;
-        font-size: 15px;
-    }
-    
-    .Button {
-        padding: 14px 30px;
-        font-size: 16px;
-    }
-}
-
 .add-note-btn {
     display: block;
     margin: 15px auto 25px auto; 
@@ -268,4 +244,167 @@ hr {
 input.error, select.error {
     border: 2px solid #ff4d4d !important;
     background-color: #fff5f5 !important;
+}
+
+@media (max-width: 500px) {
+
+    body {
+        padding: 0;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 100%;
+        min-height: 100dvh;
+        padding: 40px 22px;
+        padding-bottom: 40px;
+        border-radius: 0px;
+        box-shadow: none;
+        border: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .container p {
+        font-size: 30px;
+        margin-bottom: 20px;
+        max-width: 90%;
+        color: #636363;
+    }
+
+    .container h1 {
+        font-size: 50px;
+        font-weight: 700;
+        color: #636363;
+        margin-bottom: 20px;
+        margin-top: 20px;
+        line-height: 1.2;
+        letter-spacing: -0.5px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .container h2 {
+        font-size: 30px;
+    }
+
+    .container span {
+        font-size: 18px;
+
+    }
+
+    .main.logo {
+        height: auto; 
+        width: 30%;
+        max-width: 60px;
+        min-height: 60px;
+        margin: 10px auto;
+        object-fit: contain;
+        flex-shrink: 0;
+        display: block;
+
+    }
+
+    input[type="text"],
+    input[type="date"],
+    select {
+        padding: 14px 16px;
+        font-size: 20px;
+        border-radius: 10px;
+        margin-bottom: 30px;
+    }
+
+    .task-input-container input {
+        padding-right: 42px;
+    }
+
+    .Button {
+        width: 100%;
+        max-width: 300px;
+        height: 58px;
+        font-size: 18px;
+        margin-top: 14px;
+        margin-top: 12px;
+        margin-bottom: 12px;
+    }
+
+    #btn-add, .add-note-btn {
+        width: 55px;
+        height: 55px;
+        font-size: 34px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: -15px
+    }
+
+    .task-card {
+        padding: 14px 0;
+        gap: 12px;
+    }
+
+    .label-big-task {
+        font-size: 12px;
+    }
+
+    .main-small-task {
+        font-size: 18px;
+    }
+
+    .play-btn {
+        width: 42px;
+        height: 42px;
+    }
+
+    .delete-btn {
+        right: 12px;
+        top: 30%;
+        transform: translateY(-50%);
+        height: 44px;
+        width: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+    }
+
+    .delete-btn svg {
+        width: 24px;
+        height: 24px;
+        stroke-width: 1.5;
+    }
+
+    .view {
+        min-height: 100dvh;
+    }
+
+    #view-step5 .container {
+        padding-top: 40px;
+    }
+
+    hr {
+        margin-bottom: 8px;
+    }
+
+    #display-big-task {
+        font-size: 25px;
+    }
+
+    #display-small-tasks {
+        font-size: 50px;
+        max-width: 90%;
+        margin-bottom: 30px;
+    }
+
+    #estimated-time-display,
+    #actual-time-display {
+        font-size: 30px;
+        color: #535252;
+    }
+
+    #actual-time-display {
+        margin-bottom: 30px;
+    }
 }
