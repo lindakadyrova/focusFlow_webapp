@@ -259,6 +259,33 @@ input.error, select.error {
     display: none;
 }
 
+#global-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px 20px;
+    z-index: 1000;
+    pointer-events: none; /* Allows clicking things 'under' the header if needed */
+}
+
+.header-logo {
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    pointer-events: auto; /* Re-enables clicking the icon to go home */
+    transition: transform 0.2s ease;
+}
+
+.header-logo:hover {
+    transform: scale(1.1);
+}
+
+/* Hide the header on the landing page */
+#global-header.hidden {
+    display: none;
+}
+
 @media (max-width: 500px) {
 
     body {

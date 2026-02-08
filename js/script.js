@@ -3,6 +3,15 @@ function navigateTo(viewId) {
         view.classList.remove('active');
     });
     document.getElementById(viewId).classList.add('active');
+
+    const header = document.getElementById('global-header');
+    const hiddenViews = ['view-landing', 'view-step6', 'view-step7'];
+
+    if (hiddenViews.includes(viewId)) {
+        header.classList.add('hidden');
+    } else {
+        header.classList.remove('hidden');
+    }
     
     if (viewId === 'view-step5' || viewId === 'view-step6') {
         loadTasks();
