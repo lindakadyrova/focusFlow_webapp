@@ -108,6 +108,64 @@ function removeTaskField(button) {
 function startSpecificTask(taskId) {
     const allTasks = JSON.parse(localStorage.getItem('focusFlowTasks')) || [];
     const selected = allTasks.find(t => t.id === taskId);
-    localStorage.setItem('currentActiveTask', JSON.stringify(selected));
-    navigateTo('view-step6');
+    
+    if (selected) {
+        localStorage.setItem('currentActiveTask', JSON.stringify(selected));
+        
+        document.getElementById('display-big-task').innerText = selected.bigTask;
+        document.getElementById('display-small-tasks').innerText = selected.smallTasks[0] || "No more sub-tasks";
+        
+        navigateTo('view-step6');
+    }
+}
+
+function completeSmallTask() {
+    let activeTask = JSON.parse(localStorage.getItem('currentActiveTask'));
+    
+    if (!activeTask || !activeTask.smallTasks) {
+        navigateTo('view-step7');
+        return;
+    }
+
+    activeTask.smallTasks.shift();
+
+    if (activeTask.smallTasks.length > 0) {
+        localStorage.setItem('currentActiveTask', JSON.stringify(activeTask));
+        
+        document.getElementById('display-big-task').innerText = activeTask.bigTask;
+        document.getElementById('display-small-tasks').innerText = activeTask.smallTasks[0];
+        
+        updateMasterTaskList(activeTask);
+    } else {
+        finishMasterTask(activeTask.id);
+        localStorage.removeItem('currentActiveTask');
+        navigateTo('view-step7');
+    }
+}
+
+function updateMasterTaskList(updatedTask) {
+    let allTasks = JSON.parse(localStorage.getItem('focusFlowTasks')) || [];
+    const index = allTasks.findIndex(t => t.id === updatedTask.id);
+    
+    if (index !== -1) {
+        allTasks[index] = updatedTask;
+        localStorage.setItem('focusFlowTasks', JSON.stringify(allTasks));
+    }
+}
+
+function finishMasterTask(taskId) {
+    let allTasks = JSON.parse(localStorage.getItem('focusFlowTasks')) || [];
+    allTasks = allTasks.filter(t => t.id !== taskId);
+    localStorage.setItem('focusFlowTasks', JSON.stringify(allTasks));
+}
+
+function stopSessionEarly() {
+    const activeTask = JSON.parse(localStorage.getItem('currentActiveTask'));
+    
+    if (activeTask) {
+        updateMasterTaskList(activeTask);
+    }
+    
+    localStorage.removeItem('currentActiveTask');
+    navigateTo('view-step5');
 }
